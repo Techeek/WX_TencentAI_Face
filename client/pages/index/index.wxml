@@ -1,0 +1,18 @@
+<view class="image_viwe_size">
+  <image class="image_size" src="{{imgsrc}}" mode="aspectFit"></image>
+</view>
+<view class='button_viwe_size'>
+  <button class="button_size" type="primary" bindtap="wx_face">上传照片</button>
+</view>
+<view class='progress_view_size'>
+<progress percent="{{progress}}"  show-info />
+<text class="text_size">上传进度</text>
+</view>
+<view class='text_viwe_size'>
+  <text class="text_size">性别：{{gender}}</text>
+  <text class="text_size">年龄：{{age}}</text>
+    <text class="text_size">颜值：{{beauty}}</text>
+  <text class="text_size">是否带眼镜：{{glasses}}</text>
+  <text class="text_size">是否带帽子：{{hat}}</text>
+  <text class="text_size">脸部是否被遮挡：{{mask}}</text>
+</view>

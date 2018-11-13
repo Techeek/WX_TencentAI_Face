@@ -1,0 +1,32 @@
+@import "../../lib/weui.wxss";
+.image_viwe_size{
+  display:flex;
+  justify-content: center;
+  background: #FFFFFF;
+}
+.image_size{
+  width: 300px;
+}
+.button_viwe_size{
+  display:flex;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.button_size{
+  height:50px;
+  width: 200px;
+}
+.text_viwe_size{
+  padding-top: 20px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.text_size{
+  display:flex;
+  color: #444444;
+}
+.progress_view_size{
+  padding-left: 30px;
+  padding-right: 30px;
+}
