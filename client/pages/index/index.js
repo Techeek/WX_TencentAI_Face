@@ -99,12 +99,12 @@ Page({
    */
   data: {
     imgsrc:"../../lib/img/imgsrc.jpg",
-    age: "请上照片",
-    glasses: "请上照片",
-    beauty: "请上照片",
-    mask: "请上照片",
-    hat: "请上照片",
-    gender: "请上照片"
+    age: "请上传照片",
+    glasses: "请上传照片",
+    beauty: "请上传照片",
+    mask: "请上传照片",
+    hat: "请上传照片",
+    gender: "请上传照片"
   },
   
   /**

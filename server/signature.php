@@ -1,22 +1,12 @@
 <?php
-$appid = "YOUR APPID_ID";
+$appid = "125********5";  //这里替换成你在腾讯云申请到的appid  
+$domain_url = "weixin.techeek.cn";  //这里替换成你服务器的域名，不要加https://  
+$secret_id = "A**************************a";  //这里替换成你在腾讯云申请到的secret_id  
+$secret_key = "B************************G";  //这里替换成你在腾讯云申请到的secret_key  
 $bucket = "tencentyun";
-$secret_id = "YOUR SECRET_ID";
-$secret_key = "YOUR SECRET_KEY";
-$expired = time() + 2592000;
-$onceExpired = 0;
+$expired = time() + 10;
 $current = time();
 $rdm = rand();
-$userid = "0";
-$fileid = "tencentyunSignTest";
-$srcStr = 'a='.$appid.'&b='.$bucket.'&k='.$secret_id.'&e='.$expired.'&t='.$current.'&r='.$rdm.'&f=';
-$srcWithFile = 'a='.$appid.'&b='.$bucket.'&k='.$secret_id.'&e='.$expired.'&t='.$current.'&r='.$rdm.'&f='.$fileid;
-$srcStrOnce= 'a='.$appid.'&b='.$bucket.'&k='.$secret_id.'&e='.$onceExpired .'&t='.$current.'&r='.$rdm
-.'&f='.$fileid;
-$signStr = base64_encode(hash_hmac('SHA1', $srcStr, $secret_key, true).$srcStr);
-$srcWithFile = base64_encode(hash_hmac('SHA1', $srcWithFile , $secret_key, true).$srcWithFile );
+$srcStrOnce= 'a='.$appid.'&b='.$bucket.'&k='.$secret_id.'&e='.$expired.'&t='.$current.'&r='.$rdm.'&f=';
 $signStrOnce = base64_encode(hash_hmac('SHA1',$srcStrOnce,$secret_key, true).$srcStrOnce);
-echo $signStr."\n"; 
-echo $srcWithFile ."\n";
-echo $signStrOnce."\n";
 ?>
