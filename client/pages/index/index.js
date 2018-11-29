@@ -28,12 +28,12 @@ Page({
                   mask:"没有遮挡"
                 });
                 break;
-              case 30 < obj.data.face[0].mask < 60:
+              case 30 < obj.data.face[0].mask && obj.data.face[0].mask < 60:
                 myThis.setData({
                   mask: "疑似遮挡"
                 });
                 break;
-              case 60 < obj.data.face[0].mask < 60:
+              case obj.data.face[0].mask > 60:
                 myThis.setData({
                   mask: "遮挡"
                 });
@@ -57,12 +57,12 @@ Page({
                   hat: "没有戴帽子"
                 });
                 break;
-              case 30 < obj.data.face[0].hat < 60:
+              case 30 < obj.data.face[0].hat && obj.data.face[0].hat < 60:
                 myThis.setData({
                   hat: "疑似戴帽子"
                 });
                 break;
-              case 60 < obj.data.face[0].hat < 100:
+              case obj.data.face[0].hat > 100:
                 myThis.setData({
                   hat: "戴帽子"
                 });
