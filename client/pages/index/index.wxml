@@ -1,6 +1,7 @@
 <view class="image_viwe_size">
-  <image class="image_size" src="{{imgsrc}}" mode="aspectFit"></image>
+<canvas canvas-id="myCanvas" style="width: 250px; height: 250px;"></canvas>
 </view>
+
 <view class='button_viwe_size'>
   <button class="button_size" type="primary" bindtap="wx_face">上传照片</button>
 </view>

@@ -4,9 +4,7 @@ Page({
     wx.chooseImage({
       success(res) {
         const tempFilePaths = res.tempFilePaths
-        myThis.setData({
-          imgsrc: res.tempFilePaths
-        })
+        const ctx = wx.createCanvasContext('myCanvas')
         wx.showLoading({
           title: '上传中……',
         })
@@ -22,6 +20,41 @@ Page({
               title: '加载中',
             })
             var obj = JSON.parse(res.data)
+            var ctx_size = 250 / obj.data.image_height
+            ctx.drawImage(tempFilePaths[0], 0, 0, obj.data.image_height * ctx_size, obj.data.image_width * ctx_size);
+            ctx.setStrokeStyle('red')
+            ctx.strokeRect(obj.data.face[0].x * ctx_size, obj.data.face[0].y * ctx_size, obj.data.face[0].height * ctx_size, obj.data.face[0].width * ctx_size)
+            ctx.beginPath();
+            ctx.moveTo(obj.data.face[0].face_shape.face_profile[0].x * ctx_size, obj.data.face[0].face_shape.face_profile[0].y * ctx_size)
+            for (var i = 1; i < obj.data.face[0].face_shape.face_profile.length;i++){
+              ctx.lineTo(obj.data.face[0].face_shape.face_profile[i].x * ctx_size, obj.data.face[0].face_shape.face_profile[i].y * ctx_size)
+            }
+            ctx.moveTo(obj.data.face[0].face_shape.left_eye[0].x * ctx_size, obj.data.face[0].face_shape.left_eye[0].y * ctx_size)
+            for (var i = 1; i < obj.data.face[0].face_shape.left_eye.length; i++) {
+              ctx.lineTo(obj.data.face[0].face_shape.left_eye[i].x * ctx_size, obj.data.face[0].face_shape.left_eye[i].y * ctx_size)
+            }
+            ctx.moveTo(obj.data.face[0].face_shape.right_eye[0].x * ctx_size, obj.data.face[0].face_shape.right_eye[0].y * ctx_size)
+            for (var i = 1; i < obj.data.face[0].face_shape.right_eye.length; i++) {
+              ctx.lineTo(obj.data.face[0].face_shape.right_eye[i].x * ctx_size, obj.data.face[0].face_shape.right_eye[i].y * ctx_size)
+            }
+            ctx.moveTo(obj.data.face[0].face_shape.left_eyebrow[0].x * ctx_size, obj.data.face[0].face_shape.left_eyebrow[0].y * ctx_size)
+            for (var i = 1; i < obj.data.face[0].face_shape.left_eyebrow.length; i++) {
+              ctx.lineTo(obj.data.face[0].face_shape.left_eyebrow[i].x * ctx_size, obj.data.face[0].face_shape.left_eyebrow[i].y * ctx_size)
+            }
+            ctx.moveTo(obj.data.face[0].face_shape.right_eyebrow[0].x * ctx_size, obj.data.face[0].face_shape.right_eyebrow[0].y * ctx_size)
+            for (var i = 1; i < obj.data.face[0].face_shape.right_eyebrow.length; i++) {
+              ctx.lineTo(obj.data.face[0].face_shape.right_eyebrow[i].x * ctx_size, obj.data.face[0].face_shape.right_eyebrow[i].y * ctx_size)
+            }
+            ctx.moveTo(obj.data.face[0].face_shape.mouth[0].x * ctx_size, obj.data.face[0].face_shape.mouth[0].y * ctx_size)
+            for (var i = 1; i < obj.data.face[0].face_shape.mouth.length; i++) {
+              ctx.lineTo(obj.data.face[0].face_shape.mouth[i].x * ctx_size, obj.data.face[0].face_shape.mouth[i].y * ctx_size)
+            }
+            ctx.moveTo(obj.data.face[0].face_shape.nose[0].x * ctx_size, obj.data.face[0].face_shape.nose[0].y * ctx_size)
+            for (var i = 1; i < obj.data.face[0].face_shape.nose.length; i++) {
+              ctx.lineTo(obj.data.face[0].face_shape.nose[i].x * ctx_size, obj.data.face[0].face_shape.nose[i].y * ctx_size)
+            }
+            ctx.stroke();
+            ctx.draw()
             switch(true){
               case obj.data.face[0].mask <30:
                 myThis.setData({
@@ -111,7 +144,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const ctx = wx.createCanvasContext('myCanvas')
+    const image = "../../lib/img/imgsrc.jpg";
+    ctx.drawImage(image, 0, 0, 250, 250);
+    ctx.draw()
   },
 
   /**
