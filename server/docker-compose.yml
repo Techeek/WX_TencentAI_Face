@@ -1,7 +1,5 @@
 php:
   image: php
-  volumes:
-    - ./php-server:/www
 nginx:
   image: nginx
   volumes:
