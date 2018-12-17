@@ -1,13 +1,21 @@
-php:
-  image: php
-nginx:
-  image: nginx
-  volumes:
-    - ./nginx-config:/etc/nginx/conf.d
-    - ./ssl:/etc/nginx/ssl
-  volumes_from:
-    - php
-  ports:
-    - 443:443
-  links:
-    - php
+version: '3'
+services:
+    nginx:
+        image: nginx
+        ports:
+            - 80:80
+            - 443:443
+        depends_on:
+            - php
+        volumes:
+          - ./nginx-config:/etc/nginx/conf.d
+          - ./ssl:/etc/nginx/ssl
+          - ./php-server:/php-server
+        container_name: "compose-nginx"
+    php:
+        image: php:7.2-fpm
+        ports:
+            - "9000:9000"
+        volumes:
+          - ./php-server:/php-server
+        container_name: "compose-php"
