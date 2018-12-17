@@ -30,3 +30,8 @@ sudo docker-compose up -d
 服务端搭建完成
 # php服务端（不推荐）
 需要安装`Nginx`和`PHP`，只需将`php-server`文件内容部署到你自己搭建的环境即可。这里只提供php文件，其他请自行摸索。
+
+# Q&A
+> **Q：**运行代码报错“Warning: move_uploaded_file(upload/v_eenli.png): failed to open stream: Permission denied in /php-server/index.php on line 3 
+Warning: move_uploaded_file(): Unable to move '/tmp/phpsjnAXc' to 'upload/v_eenli.png' in /php-server/index.php on line 3”  
+> **A:** 需要赋予`upload`文件夹可写的权限。请使用`chmod`命令赋予其权限。
