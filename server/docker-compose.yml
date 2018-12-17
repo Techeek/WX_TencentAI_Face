@@ -1,0 +1,15 @@
+php:
+  image: php
+  volumes:
+    - ./php-server:/www
+nginx:
+  image: nginx
+  volumes:
+    - ./nginx-config:/etc/nginx/conf.d
+    - ./ssl:/etc/nginx/ssl
+  volumes_from:
+    - php
+  ports:
+    - 443:443
+  links:
+    - php
