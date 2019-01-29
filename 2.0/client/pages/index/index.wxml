@@ -1,2 +1,2 @@
-<!--pages/index/index.wxml-->
-<text>{{shuju}}</text>
+<button bindtap="UploadImage">上传图片</button>
+<view>颜值：<text>{{Beauty}}</text></view>
