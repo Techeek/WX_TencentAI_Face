@@ -146,8 +146,8 @@ Page({
    */
   onLoad: function (options) {
     const ctx = wx.createCanvasContext('myCanvas') //绘制基本图形
-    // const image = "../../lib/img/imgsrc.jpg";
-    // ctx.drawImage(image, 0, 0, 250, 250);
+    const image = "../../lib/img/imgsrc.jpg";
+    ctx.drawImage(image, 0, 0, 250, 250);
     ctx.setStrokeStyle('green')
     ctx.arc(100, 100, 50, 1 * Math.PI, 2 * Math.PI);
     ctx.stroke();

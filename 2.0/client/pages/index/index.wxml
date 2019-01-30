@@ -1,2 +1,22 @@
-<!--pages/index/index.wxml-->
-<text>{{shuju}}</text>
+<view class="image_viwe_size">
+<image src="{{image_src}}" style="width: 200px; height: 200px;"></image>
+</view>
+
+<view class='button_viwe_size'>
+  <button class="button_size" type="primary" bindtap="UploadImage">上传照片</button>
+</view>
+<view class='progress_view_size'>
+<progress percent="{{progress}}"  show-info />
+<text class="text_size">上传进度</text>
+</view>
+<view class='text_viwe_size'>
+  <text class="text_size">性别：{{gender}}</text>
+  <text class="text_size">年龄：{{age}}</text>
+    <text class="text_size">颜值：{{beauty}}</text>
+  <text class="text_size">是否带眼镜：{{glasses}}</text>
+  <text class="text_size">是否有帽子：{{hat}}</text>
+  <text class="text_size">是否有口罩：{{mask}}</text>
+  <text class="text_size">头发长度：{{hair_length}}</text>
+  <text class="text_size">有无刘海：{{hair_bang}}</text>
+  <text class="text_size">头发颜色：{{hair_color}}</text>
+</view>
