@@ -4,13 +4,14 @@ Page({
   },
   UploadImage() {
     var myThis = this
+    var random = Date.parse(new Date()) + Math.ceil(Math.random() * 1000)
     wx.chooseImage({
       count: 1,
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
       success(res) {
         wx.cloud.uploadFile({
-          cloudPath: 'UploadImage.png',
+          cloudPath: random + '.png',
           filePath: res.tempFilePaths[0],
           success: res => {
             wx.cloud.callFunction({
