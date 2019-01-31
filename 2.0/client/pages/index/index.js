@@ -41,7 +41,6 @@ Page({
                   icon: 'success',
                   duration: 500
                 })
-                console.log(cloud_callFunction_res.result)
                 myThis.setData({
                   age: cloud_callFunction_res.result.FaceInfos[0].FaceAttributesInfo.Age,
                   glasses: cloud_callFunction_res.result.FaceInfos[0].FaceAttributesInfo.Glass,
