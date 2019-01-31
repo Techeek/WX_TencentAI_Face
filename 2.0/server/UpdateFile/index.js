@@ -37,7 +37,7 @@ exports.main = async(event, context) => {
   const result = await cloud.getTempFileURL({
     fileList, //向云存储发起读取文件临时地址请求
   })
-  const url = result.fileList[0].tempFileURL  
+  const url = result.fileList[0].tempFileURL
   datas = await synDetectFace(url) //调用异步函数，向腾讯云API发起请求
-  return datas 
+  return datas
 }
