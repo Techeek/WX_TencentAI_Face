@@ -1,5 +1,5 @@
 <view class="image_viwe_size">
-<image src="{{image_src}}" style="width: 200px; height: 200px;"></image>
+<canvas canvas-id="Canvas" style="width: 200px; height: 200px;"></canvas>
 </view>
 
 <view class='button_viwe_size'>
