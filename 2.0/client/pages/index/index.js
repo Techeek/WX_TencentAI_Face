@@ -13,8 +13,8 @@ Page({
   },
   UploadImage() {
     var myThis = this
-    var random = Date.parse(new Date()) + Math.ceil(Math.random() * 1000)
-    wx.chooseImage({
+    var random = Date.parse(new Date()) + Math.ceil(Math.random() * 1000) //随机数
+    wx.chooseImage({ //图片上传接口
       count: 1,
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
@@ -23,16 +23,18 @@ Page({
           title: '加载中...',
         });
         myThis.setData({
-          image_src: chooseImage_res.tempFilePaths[0]
+          image_src: chooseImage_res.tempFilePaths[0] //上传文件临时地址
         });
+        console.log("临时地址:" + chooseImage_res.tempFilePaths[0])
         const uploadTask = wx.cloud.uploadFile({
           cloudPath: random + '.png',
-          filePath: chooseImage_res.tempFilePaths[0],
+          filePath: chooseImage_res.tempFilePaths[0], //将临时地址中的图片文件上传到云函数文件服务器
           success(uploadFile_res) {
+            console.log("fileID:" + uploadFile_res.fileID),
             wx.cloud.callFunction({
               name: 'UpdateFile',
               data: {
-                fileID: uploadFile_res.fileID
+                fileID: uploadFile_res.fileID //上传成功文件的fileID
               },
               success(cloud_callFunction_res) {
                 wx.hideLoading()
@@ -41,12 +43,13 @@ Page({
                   icon: 'success',
                   duration: 500
                 })
+                console.log("FaceInfos:" + JSON.stringify(cloud_callFunction_res.result))
                 myThis.setData({
-                  age: cloud_callFunction_res.result.FaceInfos[0].FaceAttributesInfo.Age,
-                  glasses: cloud_callFunction_res.result.FaceInfos[0].FaceAttributesInfo.Glass,
-                  beauty: cloud_callFunction_res.result.FaceInfos[0].FaceAttributesInfo.Beauty,
-                  mask: cloud_callFunction_res.result.FaceInfos[0].FaceAttributesInfo.Mask,
-                  hat: cloud_callFunction_res.result.FaceInfos[0].FaceAttributesInfo.Hat,
+                  age: cloud_callFunction_res.result.FaceInfos[0].FaceAttributesInfo.Age, //年龄
+                  glasses: cloud_callFunction_res.result.FaceInfos[0].FaceAttributesInfo.Glass, //是否带眼镜
+                  beauty: cloud_callFunction_res.result.FaceInfos[0].FaceAttributesInfo.Beauty, //颜值数据
+                  mask: cloud_callFunction_res.result.FaceInfos[0].FaceAttributesInfo.Mask, //是否遮挡
+                  hat: cloud_callFunction_res.result.FaceInfos[0].FaceAttributesInfo.Hat, //是否带帽子
                 })
                 if (cloud_callFunction_res.result.FaceInfos[0].FaceAttributesInfo.Gender < 50) {
                   myThis.setData({
@@ -138,7 +141,7 @@ Page({
   },
   onLoad() {
     wx.cloud.init({
-      env: 'test-f97abe'
+      env: 'release-a33bce'
     })
   }
 })
