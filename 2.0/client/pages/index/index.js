@@ -9,19 +9,17 @@ Page({
     hair_length: "请上传照片",
     hair_bang: "请上传照片",
     hair_color: "请上传照片",
-    image_src: "../../libs/img/user.svg"
+    image_src: "../../libs/img/user.svg",
+    canvas_height: 200
   },
   UploadImage() {
     var myThis = this
     var random = Date.parse(new Date()) + Math.ceil(Math.random() * 1000) //随机数
     wx.chooseImage({ //图片上传接口
       count: 1,
-      sizeType: ['original', 'compressed'],
+      sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
       success(chooseImage_res) {
-        const ctx = wx.createCanvasContext('Canvas'); //绘制基本图形
-        ctx.drawImage(chooseImage_res.tempFilePaths[0], 0, 0, 200, 200);
-        ctx.draw();
         wx.showLoading({
           title: '加载中...',
         });
@@ -138,10 +136,13 @@ Page({
                 success(cloud_callFunction_res) {
                   wx.hideLoading()
                   console.log("AnalyzeFace:" + JSON.stringify(cloud_callFunction_res.result))
-                  var ctx_size = 200 / cloud_callFunction_res.result.ImageHeight;
-                  // 获取图片与canvas的比值
+                  var ctx_size = 200 / cloud_callFunction_res.result.ImageWidth;
+                  // 获取图片宽度与canvas宽度200的比值
                   const ctx = wx.createCanvasContext('Canvas'); //绘制基本图形
-                  ctx.drawImage(chooseImage_res.tempFilePaths[0], 0, 0, 200, 200);
+                  ctx.drawImage(chooseImage_res.tempFilePaths[0], 0, 0, 200, cloud_callFunction_res.result.ImageHeight * ctx_size);
+                  myThis.setData({
+                    canvas_height: cloud_callFunction_res.result.ImageHeight * ctx_size
+                  })
                   ctx.setStrokeStyle('#0000FF')
                   ctx.beginPath()
 
