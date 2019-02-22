@@ -19,11 +19,11 @@ Page({
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
       success(chooseImage_res) {
+        const ctx = wx.createCanvasContext('Canvas'); //绘制基本图形
+        ctx.drawImage(chooseImage_res.tempFilePaths[0], 0, 0, 200, 200);
+        ctx.draw();
         wx.showLoading({
           title: '加载中...',
-        });
-        myThis.setData({
-          image_src: chooseImage_res.tempFilePaths[0] //上传文件临时地址
         });
         console.log("临时地址:" + chooseImage_res.tempFilePaths[0])
         const uploadTask = wx.cloud.uploadFile({
@@ -138,6 +138,53 @@ Page({
                 success(cloud_callFunction_res) {
                   wx.hideLoading()
                   console.log("AnalyzeFace:" + JSON.stringify(cloud_callFunction_res.result))
+                  var ctx_size = 200 / cloud_callFunction_res.result.ImageHeight;
+                  // 获取图片与canvas的比值
+                  const ctx = wx.createCanvasContext('Canvas'); //绘制基本图形
+                  ctx.drawImage(chooseImage_res.tempFilePaths[0], 0, 0, 200, 200);
+                  ctx.setStrokeStyle('#0000FF')
+                  ctx.beginPath()
+
+                  ctx.moveTo(cloud_callFunction_res.result.FaceShapeSet[0].FaceProfile[0].X * ctx_size, cloud_callFunction_res.result.FaceShapeSet[0].FaceProfile[0].Y * ctx_size)
+                  for (var i = 1; i < cloud_callFunction_res.result.FaceShapeSet[0].FaceProfile.length;i++){
+                    ctx.lineTo(cloud_callFunction_res.result.FaceShapeSet[0].FaceProfile[i].X * ctx_size, cloud_callFunction_res.result.FaceShapeSet[0].FaceProfile[i].Y * ctx_size)
+                  }//脸型轮廓
+
+                  ctx.moveTo(cloud_callFunction_res.result.FaceShapeSet[0].LeftEye[0].X * ctx_size, cloud_callFunction_res.result.FaceShapeSet[0].LeftEye[0].Y * ctx_size)
+                  for (var i = 1; i < cloud_callFunction_res.result.FaceShapeSet[0].LeftEye.length; i++) {
+                    ctx.lineTo(cloud_callFunction_res.result.FaceShapeSet[0].LeftEye[i].X * ctx_size, cloud_callFunction_res.result.FaceShapeSet[0].LeftEye[i].Y * ctx_size)
+                  }//左眼轮廓
+
+                  ctx.moveTo(cloud_callFunction_res.result.FaceShapeSet[0].RightEye[0].X * ctx_size, cloud_callFunction_res.result.FaceShapeSet[0].RightEye[0].Y * ctx_size)
+                  for (var i = 1; i < cloud_callFunction_res.result.FaceShapeSet[0].RightEye.length; i++) {
+                    ctx.lineTo(cloud_callFunction_res.result.FaceShapeSet[0].RightEye[i].X * ctx_size, cloud_callFunction_res.result.FaceShapeSet[0].RightEye[i].Y * ctx_size)
+                  }//右眼轮廓
+
+                  ctx.moveTo(cloud_callFunction_res.result.FaceShapeSet[0].LeftEyeBrow[0].X * ctx_size, cloud_callFunction_res.result.FaceShapeSet[0].LeftEyeBrow[0].Y * ctx_size)
+                  for (var i = 1; i < cloud_callFunction_res.result.FaceShapeSet[0].LeftEyeBrow.length; i++) {
+                    ctx.lineTo(cloud_callFunction_res.result.FaceShapeSet[0].LeftEyeBrow[i].X * ctx_size, cloud_callFunction_res.result.FaceShapeSet[0].LeftEyeBrow[i].Y * ctx_size)
+                  }//左眉毛轮廓
+
+                  ctx.moveTo(cloud_callFunction_res.result.FaceShapeSet[0].RightEyeBrow[0].X * ctx_size, cloud_callFunction_res.result.FaceShapeSet[0].RightEyeBrow[0].Y * ctx_size)
+                  for (var i = 1; i < cloud_callFunction_res.result.FaceShapeSet[0].RightEyeBrow.length; i++) {
+                    ctx.lineTo(cloud_callFunction_res.result.FaceShapeSet[0].RightEyeBrow[i].X * ctx_size, cloud_callFunction_res.result.FaceShapeSet[0].RightEyeBrow[i].Y * ctx_size)
+                  }//右眉毛轮廓
+
+                  ctx.moveTo(cloud_callFunction_res.result.FaceShapeSet[0].Mouth[0].X * ctx_size, cloud_callFunction_res.result.FaceShapeSet[0].Mouth[0].Y * ctx_size)
+                  for (var i = 1; i < cloud_callFunction_res.result.FaceShapeSet[0].Mouth.length; i++) {
+                    ctx.lineTo(cloud_callFunction_res.result.FaceShapeSet[0].Mouth[i].X * ctx_size, cloud_callFunction_res.result.FaceShapeSet[0].Mouth[i].Y * ctx_size)
+                  }//嘴巴轮廓
+
+                  ctx.moveTo(cloud_callFunction_res.result.FaceShapeSet[0].Nose[0].X * ctx_size, cloud_callFunction_res.result.FaceShapeSet[0].Nose[0].Y * ctx_size)
+                  for (var i = 1; i < cloud_callFunction_res.result.FaceShapeSet[0].Nose.length; i++) {
+                    ctx.lineTo(cloud_callFunction_res.result.FaceShapeSet[0].Nose[i].X * ctx_size, cloud_callFunction_res.result.FaceShapeSet[0].Nose[i].Y * ctx_size)
+                  }//鼻子轮廓
+
+                  ctx.moveTo(cloud_callFunction_res.result.FaceShapeSet[0].LeftPupil[0].X * ctx_size, cloud_callFunction_res.result.FaceShapeSet[0].LeftPupil[0].Y * ctx_size)
+                  ctx.lineTo(cloud_callFunction_res.result.FaceShapeSet[0].RightPupil[0].X * ctx_size, cloud_callFunction_res.result.FaceShapeSet[0].RightPupil[0].Y * ctx_size)
+                  //瞳孔距离绘制
+                  ctx.stroke();
+                  ctx.draw();
                 },
                 fail(err) {
                   wx.hideLoading()
@@ -157,9 +204,13 @@ Page({
       }
     })
   },
-  onLoad() {
+  onLoad: function() {
     wx.cloud.init({
       env: 'release-a33bce'
     })
+    const ctx = wx.createCanvasContext('Canvas'); //绘制基本图形
+    const image = "../../libs/img/user.svg";
+    ctx.drawImage(image, 0, 0, 200, 200);
+    ctx.draw();
   }
 })
