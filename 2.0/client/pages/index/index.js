@@ -141,7 +141,7 @@ Page({
   },
   onLoad() {
     wx.cloud.init({
-      env: 'release-a33bce'
+      env: 'test-f97abe'
     })
   }
 })
