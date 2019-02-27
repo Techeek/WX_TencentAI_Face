@@ -2,6 +2,11 @@
 
 ![](https://techeek-cn-1251732175.cos.ap-chengdu.myqcloud.com/wx_AI_face/Snipaste_2018-12-14_17-02-37.png)
 
+**Demo演示**
+
+![](https://techeek-cn-1251732175.cos.ap-chengdu.myqcloud.com/wx_AI_face/gh_78c3a0f83969_258.jpg)
+
+**扫描葵花码体验小程序**
 
 # 1.0版 - 使用教程（不推荐）
 
