@@ -1,9 +1,11 @@
 使用腾讯云[人脸识别](https://cloud.tencent.com/product/FaceRecognition)API在小程序上轻量级人脸识别Demo，分为**1.0版（Server：Docker+PHP）**和**2.0版（Server：NodeJS+小程序云开发）**
 
 ![](https://techeek-cn-1251732175.cos.ap-chengdu.myqcloud.com/wx_AI_face/Snipaste_2018-12-14_17-02-37.png)
+
 **Demo演示**
 
-![](https://techeek-cn-1251732175.cos.ap-chengdu.myqcloud.com/wx_AI_face/gh_78c3a0f83969_1280.jpg)
+![](https://techeek-cn-1251732175.cos.ap-chengdu.myqcloud.com/wx_AI_face/gh_78c3a0f83969_258.jpg)
+
 **扫描葵花码体验小程序**
 
 # 1.0版 - 使用教程（不推荐）
