@@ -31,17 +31,17 @@
 
 ## 服务端
 
-- 打开`server`文件夹下的`DetectFace`和`AnalyzeFace`文件夹，找到`config.js`文件,将SecretId和SecretKey替换成你在腾讯云注册的ID即可。
+- 打开`server`文件夹下的`DetectFace`、`AnalyzeFace`、`FaceMerge`文件夹，找到`config.js`文件,将SecretId和SecretKey替换成你在腾讯云注册的ID即可。
 ```
-    SecretId: 'A********************************a', //腾讯云的SecretId，请替换成你自己的
-    SecretKey: 'B********************************G' //腾讯云的SecretKey，请替换成你自己的
+    SecretId: 'YourSecretId', //腾讯云的YourSecretId，请替换成你自己的
+    SecretKey: 'YourSecretKey' //腾讯云的YourSecretKey，请替换成你自己的
 ```
 
-- 打开`server`文件夹下的`DetectFace`和`AnalyzeFace`文件夹，找到`index.js`文件,将eva替换成你云函数的环境。
+- 打开`server`文件夹下的`DetectFace`、`AnalyzeFace`、`FaceMerge`文件夹，找到`index.js`文件,将eva替换成你云函数的环境。
 ```
     cloud.init({
-      env: 'test-f97abe'
-    }) //将test-f97abe替换成你自己的云开发环境ID
+      env: 'YourwxcloudID'
+    }) //将YourwxcloudID替换成你自己的云开发环境ID
 ```
 
 之后上传项目到你的云函数目录即可。
@@ -50,7 +50,7 @@
 - 打开`client`文件夹下的`pages\index`文件夹，找到`index.js`文件,将eva替换成你云函数的环境。
 ```
     wx.cloud.init({
-      env: 'test-f97abe' //将test-f97abe替换成你自己的云开发环境ID
+      env: 'YourwxcloudID' //将YourwxcloudID替换成你自己的云开发环境ID
     })
 ```
 之后运行测试即可运行。

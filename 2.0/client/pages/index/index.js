@@ -207,7 +207,7 @@ Page({
   },
   onLoad: function() {
     wx.cloud.init({
-      env: 'release-a33bce'
+      env: 'YourwxcloudID'
     })
     const ctx = wx.createCanvasContext('Canvas'); //绘制基本图形
     const image = "../../libs/img/user.svg";
