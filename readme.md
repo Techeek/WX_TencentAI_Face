@@ -1,6 +1,6 @@
 使用腾讯云[人脸识别](https://cloud.tencent.com/product/FaceRecognition)API在小程序上轻量级人脸识别Demo，分为**1.0版（Server：Docker+PHP）**和**2.0版（Server：NodeJS+小程序云开发）**
 
-![](https://techeek-cn-1251732175.cos.ap-chengdu.myqcloud.com/wx_AI_face/Snipaste_2018-12-14_17-02-37.png)
+![](https://techeek-cn-1251732175.cos.ap-chengdu.myqcloud.com/wx_AI_face/look.gif)
 
 **Demo演示**
 
@@ -31,17 +31,17 @@
 
 ## 服务端
 
-- 打开`server`文件夹下的`DetectFace`和`AnalyzeFace`文件夹，找到`config.js`文件,将SecretId和SecretKey替换成你在腾讯云注册的ID即可。
+- 打开`server`文件夹下的`DetectFace`、`AnalyzeFace`、`FaceMerge`文件夹，找到`config.js`文件,将SecretId和SecretKey替换成你在腾讯云注册的ID即可。
 ```
-    SecretId: 'A********************************a', //腾讯云的SecretId，请替换成你自己的
-    SecretKey: 'B********************************G' //腾讯云的SecretKey，请替换成你自己的
+    SecretId: 'YourSecretId', //腾讯云的YourSecretId，请替换成你自己的
+    SecretKey: 'YourSecretKey' //腾讯云的YourSecretKey，请替换成你自己的
 ```
 
-- 打开`server`文件夹下的`DetectFace`和`AnalyzeFace`文件夹，找到`index.js`文件,将eva替换成你云函数的环境。
+- 打开`server`文件夹下的`DetectFace`、`AnalyzeFace`、`FaceMerge`文件夹，找到`index.js`文件,将eva替换成你云函数的环境。
 ```
     cloud.init({
-      env: 'test-f97abe'
-    }) //将test-f97abe替换成你自己的云开发环境ID
+      env: 'YourwxcloudID'
+    }) //将YourwxcloudID替换成你自己的云开发环境ID
 ```
 
 之后上传项目到你的云函数目录即可。
@@ -50,13 +50,15 @@
 - 打开`client`文件夹下的`pages\index`文件夹，找到`index.js`文件,将eva替换成你云函数的环境。
 ```
     wx.cloud.init({
-      env: 'test-f97abe' //将test-f97abe替换成你自己的云开发环境ID
+      env: 'YourwxcloudID' //将YourwxcloudID替换成你自己的云开发环境ID
     })
 ```
 之后运行测试即可运行。
 
 
 # 更新日志  
+> **2.3** - 2019年3月7日 新增人脸融合功能，更新更详细的代码注释，修复真机不展示LOGO的BUG。
+>
 > **2.2** - 2019年2月22日 修复云函数初始化BUG，该BUG会造成后台服务函数无法获取图片临时地址。新增五官定位（人脸识别框及标记）功能。
 >
 > **2.1** - 2019年1月30日 更新前端，恢复至1.0样式。因为腾讯云API 3.0将人脸检测API和人脸定位API分离，暂未写相关后端，人脸识别框及标记下个版本更新。

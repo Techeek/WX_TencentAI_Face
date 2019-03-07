@@ -2,7 +2,7 @@ const cloud = require('wx-server-sdk') //小程序云开发SDK
 const tencentcloud = require("tencentcloud-sdk-nodejs"); //腾讯云API 3.0 SDK
 const secret = require('./config.js');
 cloud.init({
-  env: 'release-a33bce'
+  env: 'YourwxcloudID'
 }) //云开发初始化
 var synDetectFace = function(url) { //人脸识别API
   const IaiClient = tencentcloud.iai.v20180301.Client; //API版本
