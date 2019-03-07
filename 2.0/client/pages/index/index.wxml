@@ -1,15 +1,21 @@
 <view class="image_viwe_size">
-<canvas canvas-id="Canvas" style="width: 200px; height: {{canvas_height}}px;"></canvas>
+<canvas canvas-id="Canvas" style="width: 200px; height: {{canvas_height}}px;display:{{canvas_viwe_display}};"></canvas>
+<image src='{{image_src}}' style="width: 200px; height: {{canvas_height}}px;display:{{image_viwe_display}};"></image>
 </view>
 
-<view class='button_viwe_size'>
+<view class='button_viwe_size' style="display:{{text_viwe}}">
   <button class="button_size" type="primary" bindtap="UploadImage">上传照片</button>
 </view>
-<view class='progress_view_size'>
-<progress percent="{{progress}}"  show-info />
-<text class="text_size">上传进度</text>
+<view class='button_viwe_size'>
+  <button type="default" size="mini" bindtap="DetectFace" style="display:{{button_viwe_display}}">人脸检测</button>
+  <button type="primary" size="mini" bindtap="AnaltzeFace" style="display:{{button_viwe_display}}">五官定位</button>
+  <button type="warn" size="mini" bindtap="FaceMerge" style="display:{{button_viwe_display}}">人脸融合</button>
 </view>
-<view class='text_viwe_size'>
+<view class='progress_view_size'>
+<text class="text_size">{{UpdateImage}}</text>
+<progress percent="{{progress}}"  show-info />
+</view>
+<view class='text_viwe_size' style="display:{{text_viwe_display}}">
   <text class="text_size">性别：{{gender}}</text>
   <text class="text_size">年龄：{{age}}</text>
   <text class="text_size">颜值：{{beauty}}</text>
