@@ -26,3 +26,6 @@
   <text class="text_size">有无刘海：{{hair_bang}}</text>
   <text class="text_size">头发颜色：{{hair_color}}</text>
 </view>
+<view class='button_viwe_size'>
+<button type="default" open-type="share" style="display:{{button_viwe_display}}">分享</button>
+</view>

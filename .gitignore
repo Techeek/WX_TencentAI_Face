@@ -1,3 +1,4 @@
 /.vscode
 project.config.json
 !.gitignore
+.DS_Store

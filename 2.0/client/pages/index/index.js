@@ -333,5 +333,6 @@ Page({
     const image = "../../libs/img/user.svg";
     ctx.drawImage(image, 0, 0, 200, 200);
     ctx.draw();
+    wx.showShareMenu()
   }
 })
